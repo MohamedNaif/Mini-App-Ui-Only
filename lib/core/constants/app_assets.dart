@@ -21,7 +21,6 @@ class AppAssets {
   static const String hunterXHunterPosterSvg =
       '$_images/Hunter-x-hunter-phantom-rouge-poster 1.svg';
 
-
   // SVGs Characters
   static const String conanCharacter = '$_images/conan_char.png';
   static const String luffyCharacter = '$_images/luffy_char.png';
@@ -29,11 +28,18 @@ class AppAssets {
   static const String dragonballCharacter = '$_images/gogo_char.png';
   static const String narutoCharacter = '$_images/Naruto_char.png';
 
-  static const String gonCharacter =
-      '$_images/Gon_char.png';
+  static const String gonCharacter = '$_images/Gon_char.png';
 
-
-      //
-      static const String starIcon = '$_images/star.svg';        
-      static const String starBackground = '$_images/Star1.svg';        
+  //
+  static const String starIcon = '$_images/star.svg';
+  static const String starBackground = '$_images/Star1.svg';
+  static const String starBackground2 = '$_images/Star2.svg';
+  static const String rocket = '$_images/Rocket.png';
+  static const String export = '$_images/export.png';
+  static const String stopwatch = '$_images/solar_stopwatch-play-bold.svg';
+  static const String clapping = '$_images/HandsClapping.svg';
+  static const String fire = '$_images/fire.svg';
+  static const String eye = '$_images/fa-solid_eye.svg';
+  static const String demonslayerBackground = '$_images/demonslayer_background.png';
+  static const String demonslayerLogo = '$_images/demonslayer_logo.png';
 }

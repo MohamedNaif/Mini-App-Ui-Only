@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mimi_app_ui_only/features/home/presentation/pages/home_detailes_page.dart';
 import 'package:mimi_app_ui_only/features/home/presentation/pages/home_page.dart';
+
+import 'features/home/presentation/pages/upgrade_plane_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Raleway',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const HomePage(),
+      home: const HomeDetailesPage(),
     );
   }
 }
