@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mimi_app_ui_only/config/theme/app_style.dart';
+import 'package:mimi_app_ui_only/features/home/presentation/pages/upgrade_plane_page.dart';
 
 import '../../../../core/constants/app_assets.dart';
 
@@ -25,7 +27,6 @@ class HomeDetailesPageBody extends StatelessWidget {
         Expanded(
           child: SingleChildScrollView(
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // Cover Image + Logo
@@ -34,47 +35,80 @@ class HomeDetailesPageBody extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        Image.asset(
-                          AppAssets.demonslayerBackground,
-                          height: 500,
+                        // Main background image with gradient overlay
+                        Container(
+                          height: 550,
                           width: double.infinity,
-                          fit: BoxFit.cover,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                AppAssets.demonslayerBackground,
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.transparent,
+                                  Colors.transparent,
+                                  Color(0xff2c1e51).withValues(alpha: 0.3),
+                                  Color(0xff2c1e51).withValues(alpha: 0.8),
+                                  Color(0xff2c1e51),
+                                ],
+                                stops: [0.0, 0.4, 0.6, 0.8, 1.0],
+                              ),
+                            ),
+                          ),
                         ),
-                        const SizedBox(height: 70),
+                        const SizedBox(height: 50),
                       ],
                     ),
+                    // Logo positioned at the bottom
                     Positioned(
-                      bottom: -10,
+                      bottom: 0,
                       child: Image.asset(
                         AppAssets.demonslayerLogo,
-                        height: 180,
+                        height: 120,
+                        width: 160,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ],
                 ),
 
-                const SizedBox(height: 16),
+                const SizedBox(height: 20),
 
                 // Tags (Genres)
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Wrap(
-                    spacing: 8,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       _ChipItem(text: "Dark Fantasy"),
+                      SizedBox(width: 8),
                       _ChipItem(text: "Action"),
+                      SizedBox(width: 8),
                       _ChipItem(text: "Adventure"),
                     ],
                   ),
                 ),
 
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Divider(color: Color(0xffCBC4C4), thickness: 0.3),
+                ),
+                const SizedBox(height: 12),
 
                 // Stats Row
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: const [
                       _StatItem(iconPath: AppAssets.eye, text: "2.3M views"),
                       _StatItem(iconPath: AppAssets.clapping, text: "2K clap"),
@@ -86,64 +120,136 @@ class HomeDetailesPageBody extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Divider(color: Color(0xffCBC4C4), thickness: 0.3),
+                ),
+                const SizedBox(height: 12),
 
                 // Description
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    "Demon Slayer: Kimetsu no Yaiba follows Tanjiro Kamado, "
-                    "a young boy who becomes a demon slayer after his family "
-                    "is slaughtered and his sister Nezuko is turned into a demon.",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey.shade800,
-                      height: 1.5,
-                    ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset(AppAssets.fire),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          "Demon Slayer: Kimetsu no Yaiba follows Tanjiro Kamado, "
+                          "a young boy who becomes a demon slayer after his family "
+                          "is slaughtered and his sister Nezuko is turned into a demon.",
+                          style: AppTextStyles.semiBold14.copyWith(
+                            fontSize: 14,
+                            color: Color(0xffCBC4C4),
+                            height: 1.5,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 40),
               ],
             ),
           ),
         ),
 
         // Buttons (Fixed Bottom)
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        Container(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+          decoration: BoxDecoration(
+            color: Color(0xff2c1e51),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.1),
+                blurRadius: 10,
+                offset: const Offset(0, -5),
+              ),
+            ],
+          ),
           child: Row(
             children: [
               Expanded(
-                child: OutlinedButton(
-                  onPressed: () {},
+                child: OutlinedButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Hero(
+                          tag: "preview",
+                          child: const UpgradePlanePage(),
+                        ),
+                      ),
+                    );
+                  },
+                  icon: SvgPicture.asset(
+                    AppAssets.stopwatch,
+                    height: 28,
+                    width: 28,
+                    colorFilter: ColorFilter.mode(
+                      Colors.white,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                  label: const Text(
+                    "Preview",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
                   style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.deepPurple),
+                    side: BorderSide(
+                      color: Colors.white.withValues(alpha: 0.3),
+                    ),
+                    backgroundColor: Colors.transparent,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(25),
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 14),
-                  ),
-                  child: const Text(
-                    "Preview",
-                    style: TextStyle(fontSize: 16, color: Colors.deepPurple),
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 16),
               Expanded(
-                child: ElevatedButton(
-                  onPressed: () {},
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => Hero(
+                          tag: "preview",
+                          child: const UpgradePlanePage(),
+                        ),
+                      ),
+                    );
+                  },
+                  icon: SvgPicture.asset(
+                    AppAssets.eye,
+                    height: 24,
+                    colorFilter: ColorFilter.mode(
+                      Colors.white,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                  label: const Text(
+                    "Watch Now",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: const Color(0xff6366f1),
+                    elevation: 8,
+                    shadowColor: const Color(0xff6366f1).withValues(alpha: 0.4),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(25),
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 14),
-                  ),
-                  child: const Text(
-                    "Watch Now",
-                    style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
               ),
@@ -161,7 +267,21 @@ class _ChipItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Chip(label: Text(text), backgroundColor: const Color(0xffE6E6FA));
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: 0.2),
+          width: 1,
+        ),
+      ),
+      child: Text(
+        text,
+        style: AppTextStyles.semiBold14.copyWith(color: Colors.white),
+      ),
+    );
   }
 }
 
@@ -174,11 +294,19 @@ class _StatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgPicture.asset(iconPath, height: 20, width: 20),
+        SvgPicture.asset(
+          iconPath,
+          height: 20,
+          width: 20,
+          colorFilter: ColorFilter.mode(
+            Colors.white.withValues(alpha: 0.8),
+            BlendMode.srcIn,
+          ),
+        ),
         const SizedBox(width: 6),
         Text(
           text,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          style: AppTextStyles.semiBold14.copyWith(color: Colors.white),
         ),
       ],
     );

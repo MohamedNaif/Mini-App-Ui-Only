@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mimi_app_ui_only/features/home/presentation/pages/home_detailes_page.dart';
 import '../pages/home_page.dart';
 
 class AnimeSection extends StatelessWidget {
@@ -28,7 +29,17 @@ class AnimeSection extends StatelessWidget {
                 ),
               );
             },
-            child: AnimeCard(anime: items[index]),
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        Hero(tag: "preview", child: const HomeDetailesPage()),
+                  ),
+                );
+              },
+              child: AnimeCard(anime: items[index]),
+            ),
           );
         },
       ),
