@@ -20,4 +20,19 @@ class AppAssets {
   static const String dragonballSvg = '$_images/dragonball.svg';
   static const String hunterXHunterPosterSvg =
       '$_images/Hunter-x-hunter-phantom-rouge-poster 1.svg';
+
+
+  // SVGs Characters
+  static const String conanCharacter = '$_images/conan_char.png';
+  static const String luffyCharacter = '$_images/luffy_char.png';
+  // static const String narutoCharacter = '$_images/Naruto_char.svg';
+  static const String dragonballCharacter = '$_images/gogo_char.png';
+  static const String narutoCharacter = '$_images/Naruto_char.png';
+
+  static const String gonCharacter =
+      '$_images/Gon_char.png';
+
+
+      //
+      static const String starIcon = '$_images/star.svg';
 }

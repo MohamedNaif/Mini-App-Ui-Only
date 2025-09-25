@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../pages/home_page.dart';
 
-class CharacterSection extends StatelessWidget {
+class TopCharacterSection extends StatelessWidget {
   final List<CharacterItem> items;
 
-  const CharacterSection({super.key, required this.items});
+  const TopCharacterSection({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class CharacterSection extends StatelessWidget {
       height: 160,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 20),    
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         itemCount: items.length,
         itemBuilder: (context, index) {
           return TweenAnimationBuilder<double>(
@@ -39,3 +39,4 @@ class CharacterSection extends StatelessWidget {
     );
   }
 }
+

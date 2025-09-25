@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
 import '../pages/home_page.dart';
 
-class AnimeGrid extends StatelessWidget {
+class AnimeSection extends StatelessWidget {
   final List<AnimeItem> items;
 
-  const AnimeGrid({super.key, required this.items});
+  const AnimeSection({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.75,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-        ),
+    return SizedBox(
+      height: 350,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         itemCount: items.length,
         itemBuilder: (context, index) {
           return TweenAnimationBuilder<double>(
