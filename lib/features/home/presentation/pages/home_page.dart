@@ -13,12 +13,50 @@ import 'package:mimi_app_ui_only/features/home/presentation/widgets/anime_sectio
 import 'package:mimi_app_ui_only/features/home/presentation/widgets/character_section.dart'
     as widgets;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: HomePageBody());
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+
+                end: Alignment.center,
+                stops: const [0, 1],
+                colors: [const Color(0xffDDE2FF), Colors.white],
+              ),
+            ),
+          ),
+          Positioned(
+            right: -260,
+            top: -140,
+            child: SvgPicture.asset(
+              AppAssets.starBackground,
+              colorFilter: ColorFilter.mode(Color(0xffD3D6FF), BlendMode.srcIn),
+              height: 500,
+              width: 500,
+            ),
+          ),
+
+          HomePageBody(),
+        ],
+      ),
+      bottomNavigationBar: widgets.BottomNavBar(
+        selectedIndex: _selectedIndex,
+        onChanged: (index) => setState(() => _selectedIndex = index),
+      ),
+    );
   }
 }
 
@@ -30,8 +68,6 @@ class HomePageBody extends StatefulWidget {
 }
 
 class _HomePageBodyState extends State<HomePageBody> {
-  int _selectedIndex = 0;
-
   final List<String> categories = [
     'All',
     'Popular',
@@ -94,62 +130,56 @@ class _HomePageBodyState extends State<HomePageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF5F5FF),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Title
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Text(
-                        'Where Anime Comes Alive',
-                        style: AppTextStyles.bold28,
+    return SafeArea(
+      child: Column(
+        children: [
+          const SizedBox(height: 16),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Title
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Text(
+                      'Where Anime Comes Alive',
+                      style: AppTextStyles.bold28,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  widgets.CategoryChips(
+                    categories: categories,
+                    selectedIndex: selectedCategoryIndex,
+                    onSelected: (index) => setState(() {
+                      selectedCategoryIndex = index;
+                    }),
+                  ),
+                  const SizedBox(height: 24),
+
+                  widgets.AnimeSection(items: animeList),
+                  const SizedBox(height: 32),
+
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      'Top Characters',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 24),
-
-                    widgets.CategoryChips(
-                      categories: categories,
-                      selectedIndex: selectedCategoryIndex,
-                      onSelected: (index) => setState(() {
-                        selectedCategoryIndex = index;
-                      }),
-                    ),
-                    const SizedBox(height: 24),
-
-                    widgets.AnimeSection(items: animeList),
-                    const SizedBox(height: 32),
-
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(
-                        'Top Characters',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    widgets.TopCharacterSection(items: characters),
-                    const SizedBox(height: 100),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 16),
+                  widgets.TopCharacterSection(items: characters),
+                  const SizedBox(height: 100),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: widgets.BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onChanged: (index) => setState(() => _selectedIndex = index),
+          ),
+        ],
       ),
     );
   }

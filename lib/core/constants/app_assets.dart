@@ -34,5 +34,6 @@ class AppAssets {
 
 
       //
-      static const String starIcon = '$_images/star.svg';
+      static const String starIcon = '$_images/star.svg';        
+      static const String starBackground = '$_images/Star1.svg';        
 }
