@@ -51,8 +51,6 @@ A bright, encouraging screen designed to convert users to a premium plan. It fea
   </a>
 </p>
 
-
-
 ## Screenshots (Mobile)
 
 Images are stored at the repo root in `screenshots/`. The paths below are relative to this README:
@@ -60,17 +58,20 @@ Images are stored at the repo root in `screenshots/`. The paths below are relati
 <p >
   <img src="screenshots/Screenshot_1758896896.png"  width="280"/>
   <img src="screenshots/Screenshot_1758896912.png"  width="280"/>
-  <img src="screenshots/Screenshot_1758896928.png"  width="280"/>
  
 </p>
 
 <p >
+  <img src="screenshots/Screenshot_1758896928.png"  width="280"/>
   <img src="screenshots/Screenshot_1758896934.png"  width="280"/>
-  <img src="screenshots/Screenshot_1758896941.png"  width="280"/>
 
 </p>
 
+<p >
 
+  <img src="screenshots/Screenshot_1758896941.png"  width="280"/>
+
+</p>
 
 ## 🛠️ Tech Stack & Dependencies
 
